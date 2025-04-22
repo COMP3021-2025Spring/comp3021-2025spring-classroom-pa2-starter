@@ -67,15 +67,15 @@ public class PA2Test {
         Utils.printlnInfo("End computing and caching user profiles");
     }
 
-    // Only used by TA, do not use it!
-    @Test
-    void setTestProfiles() throws IOException {
-        for (String user : userProfiles.keySet()) {
-            JSONObject testProfile = userProfiles.get(user);
-            Path filePath = Paths.get("src/test/resources/" + user + "-profile-test.json");
-            Files.writeString(filePath, testProfile.toString(2));
-        }
-    }
+//    // Only used by TA, do not use it!
+//    @Test
+//    void setTestProfiles() throws IOException {
+//        for (String user : userProfiles.keySet()) {
+//            JSONObject testProfile = userProfiles.get(user);
+//            Path filePath = Paths.get("src/test/resources/" + user + "-profile-test.json");
+//            Files.writeString(filePath, testProfile.toString(2));
+//        }
+//    }
 
     @Test
     void testSumStatistics() throws IOException {
