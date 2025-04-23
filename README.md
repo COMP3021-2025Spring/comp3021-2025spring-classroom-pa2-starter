@@ -24,17 +24,17 @@ Here's a screencast of the application running:
 - PA0: Initial release, implement the basic functionalities of `ChatManager` and `ChatClient` and `GPT4oClient` class,
   design Task1 test cases
 - PA1:
-  - `ChatManager`: refine REPL, add history and list command
-  - `ChatClient`: add persistence functionalities, add tag and description, add token statistics in Message
-  - Add Interface `Serializable` for `ChatClient` and `Message`
-  - Add annotations for guiding persistence
-  - Add Task2 test cases
-  - Code refactoring and bug fixing
+    - `ChatManager`: refine REPL, add history and list command
+    - `ChatClient`: add persistence functionalities, add tag and description, add token statistics in Message
+    - Add Interface `Serializable` for `ChatClient` and `Message`
+    - Add annotations for guiding persistence
+    - Add Task2 test cases
+    - Code refactoring and bug fixing
 - PA2:
-  - Merge sessions into one database file, which manages all users and their sessions
-  - Add `SessionManager` as the interface between ChatClient and session files.
-  - Add PA2 test cases
-  - Code refactoring and bug fixing
+    - Merge sessions into one database file, which manages all users and their sessions
+    - Add `SessionManager` as the interface between ChatClient and session files.
+    - Add PA2 test cases
+    - Code refactoring and bug fixing
 
 ## Grading
 
@@ -43,7 +43,8 @@ codebase.
 
 - You will be implementing the profile functionality in the `SessionManager` class, which is responsible for
   generating the profile from the session database. The profile consists of 25 statistics from 6 types.
-- The focus of PA2 is functional programming, you need to convert the Sessions into Streams and perform the statistical analysis on them.
+- The focus of PA2 is functional programming, you need to convert the Sessions into Streams and perform the statistical
+  analysis on them.
 - You are free to use provided utility methods in the `Utils` class, or implement your own helper methods.
 
 We will provide public test cases for you to verify the correctness of your implementations. However, passing all the
@@ -104,6 +105,10 @@ First you need to implement those methods with "TODO" in the codebase,
 - `createEmptyProfile`: initialize the profile
 - `getSessionsStream`: converts all sessions associated with a user into a stream
 
+Besides, you might need to implement two helper methods `updateTopString` and `limitTopNString` to help with the
+implementation of `topTags`, `topModels`, and `topWords`. The `topN` value for `topTags`, `topModels`, and `topWords`
+is 3, 5, and 20 respectively.
+
 The public test cases and their corresponding statistics are given below:
 
 | Test Name               | Score | Related Methods/Statistics                                                                                                                       |
@@ -121,18 +126,23 @@ The private test will test a new statistic value in the profile called `sumPrice
 
 $$ sumPrice = \sum_{session} (totalPromptTokens \times unitPromptPrice + totalCompletionTokens \times unitCompletionPrice) \times modelSize $$
 
-The unit of `modelSize` is 1B parameters. For example, model `wizardlm-13b` has a size of 13.
+The unit of `modelSize` is 1B parameters. For example, model `wizardlm-13b` has a size of 13. After calculating the sum
+of price, you need to add a new field called `sumPrice` in the profile. The `unitPromptPrice` and `unitCompletionPrice` 
+are given in the `SessionManager`
 
 Besides, you should also pay attention to some edge cases like dealing with new user.
 
 ### Bonus
 
-PA2's bonus task is open-ended and multi-criteria. You can try to implement as more functional as possible. For example, implement with
-less statements, more stream operations. For some function you can even try to implement using only one `return` statement. 
-To make the main implementation more functional, you can add your own helper functions or even create new class for the `Profile`.
+PA2's bonus task is open-ended and multi-criteria. You can try to implement as more functional as possible. For example,
+implement with less statements, more stream operations. For some function you can even try to implement using only one
+`return` statement.
 
-The most functional style implementation will get full bonus. If the implementation is purely based on procedural programming, like loops,
-if-else statements, etc., it will get 0 bonus.
+To make the main implementation more functional, you can add your own helper functions or even create new class for the
+`Profile`.
+
+The most functional style implementation will get full bonus. If the implementation is purely based on procedural
+programming, like loops, if-else statements, etc., it will get 0 bonus.
 
 ## Project Structure
 
@@ -145,8 +155,8 @@ The project structure is as follows:
 - `ChatManager` manages all `ChatClient`s, `repl()` is the entry point for the command-line REPL (outer REPL).
 - `ChatClient` contains common implementation and specifies abstract methods, `repl()` is the entry point for the chat
   REPL (inner REPL).
-  - Under `client/`, we have two concrete classes `GPT4oClient` and `GPT4ominiClient` that extends `ChatClient`, the
-    `query()` method is used for interacting with the API service.
+    - Under `client/`, we have two concrete classes `GPT4oClient` and `GPT4ominiClient` that extends `ChatClient`, the
+      `query()` method is used for interacting with the API service.
 - `SessionManager` provide read/write/profile interface for the session database
 - `Message` and `Messages` are used for storing chat messages.
 - `Utils` contains some utility functions.

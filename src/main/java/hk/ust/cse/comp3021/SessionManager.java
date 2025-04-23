@@ -208,7 +208,7 @@ public class SessionManager {
     }
 
     /**
-     * Keep only the top N strings in the map
+     * Keep only the top N strings in the map, first sort by count, then by string
      * TODO: implement me
      *
      * @param topNStringMap the top N string map
@@ -217,6 +217,24 @@ public class SessionManager {
      */
     private static JSONObject limitTopNString(JSONObject topNStringMap, int topN) {
         throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    /**
+     * Tokenize the message into stream of words, used in counting topWords, remember to check for ignored words
+     *
+     * @param session the session contains messages
+     * @return the stream of tokens
+     */
+    static Stream<String> tokenizeMessages(JSONObject session) {
+        return session.getJSONObject("messages")
+                .getJSONArray("contents")
+                .toList()
+                .stream()
+                .map(m -> ((Map<String, String>) m).get("content")
+                        .replaceAll("[^a-zA-Z0-9]", " ")
+                        .toLowerCase())
+                .flatMap(m -> Arrays.stream(m.split(" ")))
+                .filter(str -> str.matches("[a-zA-Z]+"));
     }
 
     /**
