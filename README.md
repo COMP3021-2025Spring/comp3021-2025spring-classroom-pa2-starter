@@ -127,8 +127,8 @@ The private test will test a new statistic value in the profile called `sumPrice
 $$ sumPrice = \sum_{session} (totalPromptTokens \times unitPromptPrice + totalCompletionTokens \times unitCompletionPrice) \times modelSize $$
 
 The unit of `modelSize` is 1B parameters. For example, model `wizardlm-13b` has a size of 13. After calculating the sum
-of price, you need to add a new field called `sumPrice` in the profile. The `unitPromptPrice` and `unitCompletionPrice` 
-are given in the `SessionManager`
+of price, you need to add a new double-typed field called `sumPrice` in the profile. The `unitPromptPrice` and 
+`unitCompletionPrice` are given in the `SessionManager`
 
 Besides, you should also pay attention to some edge cases like dealing with new user.
 
