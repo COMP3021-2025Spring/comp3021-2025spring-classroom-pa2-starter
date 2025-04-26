@@ -105,6 +105,9 @@ First you need to implement those methods with "TODO" in the codebase,
 - `createEmptyProfile`: initialize the profile
 - `getSessionsStream`: converts all sessions associated with a user into a stream
 
+The `avgTimeLastOpen|Exit|Created` statistics only keep the seconds in a day (to profile the user habit, e.g. when do you usually create/start/end a session)
+, so you should first perform modular operation on the seconds by `Utils.SoD` and then compute the average.
+
 Besides, you might need to implement two helper methods `updateTopString` and `limitTopNString` to help with the
 implementation of `topTags`, `topModels`, and `topWords`. The `topN` value for `topTags`, `topModels`, and `topWords`
 is 3, 5, and 20 respectively.
