@@ -39,7 +39,7 @@ public class PA2Test {
      */
     static void compareProfileByKey(JSONObject profile, JSONObject testProfile, String key) {
         if (key.startsWith("top"))
-            assertEquals(profile.get(key).toString(), testProfile.get(key).toString());
+            assertEquals(profile.getJSONObject(key).toMap(), testProfile.getJSONObject(key).toMap());
         else
             assertEquals(profile.get(key), testProfile.get(key));
     }
