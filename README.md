@@ -112,6 +112,8 @@ Besides, you might need to implement two helper methods `updateTopString` and `l
 implementation of `topTags`, `topModels`, and `topWords`. The `topN` value for `topTags`, `topModels`, and `topWords`
 is 3, 5, and 20 respectively.
 
+For the statistics of double type, we may accept the result with a delta when comparing, so no need to worry about precision.
+
 The public test cases and their corresponding statistics are given below:
 
 | Test Name               | Score | Related Methods/Statistics                                                                                                                       |
@@ -131,7 +133,7 @@ $$ sumPrice = \sum_{session} (totalPromptTokens \times unitPromptPrice + totalCo
 
 The unit of `modelSize` is 1B parameters. For example, model `wizardlm-13b` has a size of 13. After calculating the sum
 of price, you need to add a new double-typed field called `sumPrice` in the profile. The `unitPromptPrice` and 
-`unitCompletionPrice` are given in the `SessionManager`
+`unitCompletionPrice` are given in the `SessionManager`. As an example result, the `sumPrice` for user "Katherine" is 0.00538416212.
 
 Besides, you should also pay attention to some edge cases like dealing with new user.
 
