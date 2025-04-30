@@ -135,7 +135,8 @@ The unit of `modelSize` is 1B parameters. For example, model `wizardlm-13b` has 
 of price, you need to add a new double-typed field called `sumPrice` in the profile. The `unitPromptPrice` and 
 `unitCompletionPrice` are given in the `SessionManager`. As an example result, the `sumPrice` for user "Katherine" is 0.00538416212.
 
-Besides, you should also pay attention to some edge cases like dealing with new user.
+Besides, you should also pay attention to some edge cases like dealing with new user, for a new user, you need to create
+an empty profile.
 
 ### Bonus
 
